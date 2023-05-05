@@ -4,6 +4,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
 {
   "Metadata": {
     "gu:cdk:constructs": [
+      "GuStringParameter",
       "GuVpcParameter",
       "GuSubnetListParameter",
       "GuSubnetListParameter",
@@ -67,6 +68,10 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
       "Default": "/account/vpc/primary/subnets/public",
       "Description": "A list of public subnets",
       "Type": "AWS::SSM::Parameter::Value<List<AWS::EC2::Subnet::Id>>",
+    },
+    "elasticsearchUrl": {
+      "Default": "/TEST/media-service/elasticsearch/url",
+      "Type": "AWS::SSM::Parameter::Value<String>",
     },
   },
   "Resources": {
@@ -768,7 +773,11 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
             },
           ],
           "UserData": {
-            "Fn::Base64": "#!/bin/bash -ev
+            "Fn::Base64": {
+              "Fn::Join": [
+                "",
+                [
+                  "#!/bin/bash -ev
       adduser --disabled-password cerebro
       export HOME=/home/cerebro
       cd $HOME
@@ -784,13 +793,20 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
       
       hosts = [
         {
-          host = "http://localhost:9200"
-          name = "Grid"
+          host = "",
+                  {
+                    "Ref": "elasticsearchUrl",
+                  },
+                  ""
+          name = "media-service (TEST)"
         }
       ]
       EOF
       dpkg -i cerebro_v0.0.0_all.deb
 ",
+                ],
+              ],
+            },
           },
         },
         "TagSpecifications": [
