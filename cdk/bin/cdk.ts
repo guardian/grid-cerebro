@@ -6,7 +6,7 @@ import { Cerebro } from "../lib/cerebro";
 const app = new App();
 
 new Cerebro(app, { 
-    stack: "media-service", 
+    stack: "grid-elasticsearch", 
     stage: "TEST", 
     instanceSize: InstanceSize.SMALL,
     domainName: "cerebro-new.media.test.dev-gutools.co.uk",
@@ -14,7 +14,7 @@ new Cerebro(app, {
 });
 
 new Cerebro(app, { 
-    stack: "media-service", 
+    stack: "grid-elasticsearch", 
     stage: "PROD", 
     instanceSize: InstanceSize.SMALL,
     domainName: "cerebro-new.media.gutools.co.uk",

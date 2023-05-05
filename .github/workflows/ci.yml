@@ -42,10 +42,10 @@ jobs:
 
       - uses: guardian/actions-riff-raff@v2
         with:
-          projectName: media-service::cerebro
+          projectName: grid-elasticsearch::cerebro
           config: |
             stacks:
-              - media-service
+              - grid-elasticsearch
             allowedStages:
               - TEST
               - PROD

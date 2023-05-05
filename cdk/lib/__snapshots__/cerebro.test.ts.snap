@@ -71,7 +71,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
       "Type": "AWS::SSM::Parameter::Value<List<AWS::EC2::Subnet::Id>>",
     },
     "elasticsearchUrl": {
-      "Default": "/TEST/media-service/elasticsearch/url",
+      "Default": "/TEST/grid-elasticsearch/elasticsearch/url",
       "Type": "AWS::SSM::Parameter::Value<String>",
     },
   },
@@ -82,11 +82,11 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
         "HealthCheckType": "ELB",
         "LaunchTemplate": {
           "LaunchTemplateId": {
-            "Ref": "mediaserviceTESTcerebro6E75DA77",
+            "Ref": "gridelasticsearchTESTcerebroBB7C1BD1",
           },
           "Version": {
             "Fn::GetAtt": [
-              "mediaserviceTESTcerebro6E75DA77",
+              "gridelasticsearchTESTcerebroBB7C1BD1",
               "LatestVersionNumber",
             ],
           },
@@ -119,7 +119,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
           {
             "Key": "Stack",
             "PropagateAtLaunch": true,
-            "Value": "media-service",
+            "Value": "grid-elasticsearch",
           },
           {
             "Key": "Stage",
@@ -178,7 +178,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
           },
           {
             "Key": "Stack",
-            "Value": "media-service",
+            "Value": "grid-elasticsearch",
           },
           {
             "Key": "Stage",
@@ -231,7 +231,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
                     {
                       "Ref": "DistributionBucketName",
                     },
-                    "/media-service/TEST/cerebro/*",
+                    "/grid-elasticsearch/TEST/cerebro/*",
                   ],
                 ],
               },
@@ -275,7 +275,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
           },
           {
             "Key": "Stack",
-            "Value": "media-service",
+            "Value": "grid-elasticsearch",
           },
           {
             "Key": "Stage",
@@ -416,7 +416,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
           },
           {
             "Key": "Stack",
-            "Value": "media-service",
+            "Value": "grid-elasticsearch",
           },
           {
             "Key": "Stage",
@@ -492,7 +492,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
           },
           {
             "Key": "Stack",
-            "Value": "media-service",
+            "Value": "grid-elasticsearch",
           },
           {
             "Key": "Stage",
@@ -521,7 +521,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
           },
           {
             "Key": "Stack",
-            "Value": "media-service",
+            "Value": "grid-elasticsearch",
           },
           {
             "Key": "Stage",
@@ -595,7 +595,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
                     {
                       "Ref": "AWS::AccountId",
                     },
-                    ":parameter/TEST/media-service/cerebro",
+                    ":parameter/TEST/grid-elasticsearch/cerebro",
                   ],
                 ],
               },
@@ -618,7 +618,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
                     {
                       "Ref": "AWS::AccountId",
                     },
-                    ":parameter/TEST/media-service/cerebro/*",
+                    ":parameter/TEST/grid-elasticsearch/cerebro/*",
                   ],
                 ],
               },
@@ -662,7 +662,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
           },
           {
             "Key": "Stack",
-            "Value": "media-service",
+            "Value": "grid-elasticsearch",
           },
           {
             "Key": "Stage",
@@ -741,7 +741,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
           },
           {
             "Key": "Stack",
-            "Value": "media-service",
+            "Value": "grid-elasticsearch",
           },
           {
             "Key": "Stage",
@@ -796,7 +796,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
           },
           {
             "Key": "Stack",
-            "Value": "media-service",
+            "Value": "grid-elasticsearch",
           },
           {
             "Key": "Stage",
@@ -851,13 +851,13 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
       },
       "Type": "AWS::EC2::SecurityGroupIngress",
     },
-    "mediaserviceTESTcerebro6E75DA77": {
+    "gridelasticsearchTESTcerebroBB7C1BD1": {
       "Properties": {
         "LaunchTemplateData": {
           "IamInstanceProfile": {
             "Arn": {
               "Fn::GetAtt": [
-                "mediaserviceTESTcerebroProfile9BF83A02",
+                "gridelasticsearchTESTcerebroProfileFE6E8932",
                 "Arn",
               ],
             },
@@ -897,11 +897,11 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
                 },
                 {
                   "Key": "Name",
-                  "Value": "cerebro-TEST/media-service-TEST-cerebro",
+                  "Value": "cerebro-TEST/grid-elasticsearch-TEST-cerebro",
                 },
                 {
                   "Key": "Stack",
-                  "Value": "media-service",
+                  "Value": "grid-elasticsearch",
                 },
                 {
                   "Key": "Stage",
@@ -922,11 +922,11 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
                 },
                 {
                   "Key": "Name",
-                  "Value": "cerebro-TEST/media-service-TEST-cerebro",
+                  "Value": "cerebro-TEST/grid-elasticsearch-TEST-cerebro",
                 },
                 {
                   "Key": "Stack",
-                  "Value": "media-service",
+                  "Value": "grid-elasticsearch",
                 },
                 {
                   "Key": "Stage",
@@ -961,7 +961,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
                     "Ref": "elasticsearchUrl",
                   },
                   ""
-          name = "media-service (TEST)"
+          name = "grid-elasticsearch (TEST)"
         }
       ]
       EOF
@@ -986,11 +986,11 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
               },
               {
                 "Key": "Name",
-                "Value": "cerebro-TEST/media-service-TEST-cerebro",
+                "Value": "cerebro-TEST/grid-elasticsearch-TEST-cerebro",
               },
               {
                 "Key": "Stack",
-                "Value": "media-service",
+                "Value": "grid-elasticsearch",
               },
               {
                 "Key": "Stage",
@@ -1002,7 +1002,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
       },
       "Type": "AWS::EC2::LaunchTemplate",
     },
-    "mediaserviceTESTcerebroProfile9BF83A02": {
+    "gridelasticsearchTESTcerebroProfileFE6E8932": {
       "Properties": {
         "Roles": [
           {
