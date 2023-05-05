@@ -71,7 +71,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
       "Type": "AWS::SSM::Parameter::Value<List<AWS::EC2::Subnet::Id>>",
     },
     "elasticsearchUrl": {
-      "Default": "/TEST/media-service/elasticsearch/url",
+      "Default": "/TEST/grid-elasticsearch/elasticsearch/url",
       "Type": "AWS::SSM::Parameter::Value<String>",
     },
   },
