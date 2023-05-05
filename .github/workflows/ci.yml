@@ -64,7 +64,7 @@ jobs:
                   amiTags:
                     AmigoStage: PROD
                     BuiltBy: amigo
-                    Recipe: editorial-tools-cerebro
+                    Recipe: editorial-tools-focal-java11-ARM-WITH-cdk-base
                   amiEncrypted: true
           contentDirectories: |
             cloudformation:
