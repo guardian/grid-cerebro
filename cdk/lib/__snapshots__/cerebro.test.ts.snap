@@ -941,31 +941,31 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
                 "",
                 [
                   "#!/bin/bash -ev
-      adduser --disabled-password cerebro
-      export HOME=/home/cerebro
-      cd $HOME
-      wget https://github.com/lmenezes/cerebro/releases/download/vv0.0.0/cerebro_v0.0.0_all.deb
-      echo 'JAVA_OPTS="-Dconfig.file=/etc/cerebro/custom.conf -Dpidfile.path=/dev/null"' > /etc/default/cerebro
-      mkdir /etc/cerebro
-      cat <<EOF > /etc/cerebro/custom.conf
-      echo '# Include these as defaults
-      include "/etc/cerebro/application.conf"
+adduser --disabled-password cerebro
+export HOME=/home/cerebro
+cd $HOME
+wget https://github.com/lmenezes/cerebro/releases/download/vv0.0.0/cerebro_v0.0.0_all.deb
+dpkg -i cerebro_v0.0.0_all.deb
+echo 'JAVA_OPTS="-Dconfig.file=/etc/cerebro/custom.conf -Dpidfile.path=/dev/null"' > /etc/default/cerebro
+cat <<'EOF' > /etc/cerebro/custom.conf
+# Include these as defaults
+include "/etc/cerebro/application.conf"
       
-      # Overrides
-      data.path: "/var/lib/cerebro/cerebro.db"
+# Overrides
+data.path: "/var/lib/cerebro/cerebro.db"
       
-      hosts = [
-        {
-          host = "",
+hosts = [
+  {
+    host = "",
                   {
                     "Ref": "elasticsearchUrl",
                   },
                   ""
-          name = "media-service (TEST)"
-        }
-      ]
-      EOF
-      dpkg -i cerebro_v0.0.0_all.deb
+    name = "media-service (TEST)"
+  }
+]
+EOF
+systemctl restart cerebro
 ",
                 ],
               ],
