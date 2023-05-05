@@ -1,0 +1,72 @@
+name: CI
+on:
+  workflow_dispatch:
+  push:
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+    permissions:
+      # Allow GitHub to request an OIDC JWT ID token, for exchange with `aws-actions/configure-aws-credentials`
+      # See https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services#updating-your-github-actions-workflow
+      id-token: write
+
+      # Required for `actions/checkout`
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-region: eu-west-1
+          role-to-assume: ${{ secrets.GU_RIFF_RAFF_ROLE_ARN }}
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+          cache-dependency-path: 'cdk/package-lock.json'
+
+      - name: install dependencies
+        working-directory: cdk
+        run: npm install
+
+      - name: test cdk
+        working-directory: cdk
+        run: |
+          npm run lint
+          npm run check-format
+          npm test
+
+      - name: synth cdk
+        working-directory: cdk
+        run: npm run synth
+
+      - uses: guardian/actions-riff-raff@v2
+        with:
+          projectName: media-service::cerebro
+          config: |
+            stacks:
+              - media-service
+            allowedStages:
+              - TEST
+              - PROD
+            regions:
+              - eu-west-1
+            deployments:
+              cloudformation:
+                type: cloud-formation
+                app: cerebro
+                contentDirectory: cloudformation
+                parameters:
+                  templateStagePaths:
+                    CODE: cerebro-CODE.template.json
+                    PROD: cerebro-PROD.template.json
+                  amiTags:
+                    AmigoStage: PROD
+                    BuiltBy: amigo
+                    Recipe: editorial-tools-cerebro
+                  amiEncrypted: true
+          contentDirectories: |
+            cloudformation:
+              - cdk/cdk.out/cerebro-TEST.template.json
+              - cdk/cdk.out/cerebro-CODE.template.json
