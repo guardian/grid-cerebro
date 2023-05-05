@@ -56,8 +56,8 @@ export class Cerebro extends GuStack {
       
       hosts = [
         {
-          host = "${props.esUrl}"
-          name = "Grid"
+          host = "${esUrl.valueAsString}"
+          name = "${props.stack} (${props.stage})"
         }
       ]
       EOF
