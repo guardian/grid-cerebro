@@ -173,7 +173,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
           },
           {
             "Key": "Name",
-            "Value": "Cerebro/CertificateCerebro",
+            "Value": "cerebro-TEST/CertificateCerebro",
           },
           {
             "Key": "Stack",
@@ -287,7 +287,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
       },
       "Type": "AWS::EC2::SecurityGroup",
     },
-    "GuHttpsEgressSecurityGroupCerebrofromCerebroLoadBalancerCerebroSecurityGroup3F5B1DBC900012C9592D": {
+    "GuHttpsEgressSecurityGroupCerebrofromcerebroTESTLoadBalancerCerebroSecurityGroup52BDFD869000771D3C6B": {
       "Properties": {
         "Description": "Load balancer to target",
         "FromPort": 9000,
@@ -477,7 +477,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
     },
     "LoadBalancerCerebroSecurityGroupB74E04CC": {
       "Properties": {
-        "GroupDescription": "Automatically created Security Group for ELB CerebroLoadBalancerCerebro76D68733",
+        "GroupDescription": "Automatically created Security Group for ELB cerebroTESTLoadBalancerCerebro9233C8B5",
         "SecurityGroupIngress": [
           {
             "CidrIp": "0.0.0.0/0",
@@ -515,7 +515,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
       },
       "Type": "AWS::EC2::SecurityGroup",
     },
-    "LoadBalancerCerebroSecurityGrouptoCerebroGuHttpsEgressSecurityGroupCerebro65CDCD1F9000A682A573": {
+    "LoadBalancerCerebroSecurityGrouptocerebroTESTGuHttpsEgressSecurityGroupCerebroF93BDB94900077011768": {
       "Properties": {
         "Description": "Load balancer to target",
         "DestinationSecurityGroupId": {
@@ -536,7 +536,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
       },
       "Type": "AWS::EC2::SecurityGroupEgress",
     },
-    "LoadBalancerCerebroSecurityGrouptoCerebroWazuhSecurityGroupA2F5FF879000F5341B1C": {
+    "LoadBalancerCerebroSecurityGrouptocerebroTESTWazuhSecurityGroup20EA810B9000CB2D8872": {
       "Properties": {
         "Description": "Load balancer to target",
         "DestinationSecurityGroupId": {
@@ -708,7 +708,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
       },
       "Type": "AWS::EC2::SecurityGroup",
     },
-    "WazuhSecurityGroupfromCerebroLoadBalancerCerebroSecurityGroup3F5B1DBC90004F2BE961": {
+    "WazuhSecurityGroupfromcerebroTESTLoadBalancerCerebroSecurityGroup52BDFD869000608399AE": {
       "Properties": {
         "Description": "Load balancer to target",
         "FromPort": 9000,
@@ -775,7 +775,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
                 },
                 {
                   "Key": "Name",
-                  "Value": "Cerebro/media-service-TEST-cerebro",
+                  "Value": "cerebro-TEST/media-service-TEST-cerebro",
                 },
                 {
                   "Key": "Stack",
@@ -800,7 +800,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
                 },
                 {
                   "Key": "Name",
-                  "Value": "Cerebro/media-service-TEST-cerebro",
+                  "Value": "cerebro-TEST/media-service-TEST-cerebro",
                 },
                 {
                   "Key": "Stack",
@@ -864,7 +864,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
               },
               {
                 "Key": "Name",
-                "Value": "Cerebro/media-service-TEST-cerebro",
+                "Value": "cerebro-TEST/media-service-TEST-cerebro",
               },
               {
                 "Key": "Stack",
