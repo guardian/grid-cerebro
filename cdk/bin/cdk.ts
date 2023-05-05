@@ -5,7 +5,7 @@ import { Cerebro } from "../lib/cerebro";
 
 const app = new App();
 
-new Cerebro(app, "Cerebro-TEST", { 
+new Cerebro(app, { 
     stack: "media-service", 
     stage: "TEST", 
     instanceSize: InstanceSize.SMALL,
@@ -13,7 +13,7 @@ new Cerebro(app, "Cerebro-TEST", {
     cerebroVersion: "v0.0.0",
 });
 
-new Cerebro(app, "Cerebro-PROD", { 
+new Cerebro(app, { 
     stack: "media-service", 
     stage: "PROD", 
     instanceSize: InstanceSize.SMALL,

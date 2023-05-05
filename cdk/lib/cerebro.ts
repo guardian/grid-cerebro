@@ -9,14 +9,16 @@ import {Duration} from 'aws-cdk-lib';
 import type { InstanceSize} from "aws-cdk-lib/aws-ec2";
 import {InstanceClass, InstanceType} from "aws-cdk-lib/aws-ec2";
 
+const app = 'cerebro';
+
 interface CerebroStackProps extends GuStackProps {
   instanceSize: InstanceSize;
   domainName: string;
   cerebroVersion: string;
 }
 export class Cerebro extends GuStack {
-  constructor(scope: App, id: string, props: CerebroStackProps) {
-    super(scope, id, props);
+  constructor(scope: App, props: CerebroStackProps) {
+    super(scope, `${app}-${props.stage}`, props);
 
     const esUrl = new GuStringParameter(this, 'elasticsearchUrl', {
       fromSSM: true,
@@ -28,7 +30,7 @@ export class Cerebro extends GuStack {
         minimumInstances: 1,
       },
       applicationPort: 9000,
-      app: "cerebro",
+      app,
       access: {
         scope: AccessScope.PUBLIC,
       },
@@ -71,7 +73,7 @@ export class Cerebro extends GuStack {
     const { domainName } = props;
 
     new GuCname(this, "CerebroCname", {
-      app: "cerebro",
+      app,
       resourceRecord: cerebroApp.loadBalancer.loadBalancerDnsName,
       ttl: Duration.hours(1),
       domainName: domainName,

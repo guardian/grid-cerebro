@@ -6,7 +6,7 @@ import { Cerebro } from "./cerebro";
 describe("The Cerebro stack", () => {
   it("matches the snapshot", () => {
     const app = new App();
-    const stack = new Cerebro(app, "Cerebro", { 
+    const stack = new Cerebro(app, { 
       stack: "media-service", 
       stage: "TEST", 
       instanceSize: InstanceSize.SMALL,
