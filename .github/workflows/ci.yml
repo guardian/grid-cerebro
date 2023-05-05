@@ -65,7 +65,7 @@ jobs:
                     BuiltBy: amigo
                     Recipe: editorial-tools-focal-java11-ARM-WITH-cdk-base
                   amiParameter: AMICerebro
-                  amiEncrypted: true
+                  amiEncrypted: false
           contentDirectories: |
             cloudformation:
               - cdk/cdk.out/cerebro-TEST.template.json
