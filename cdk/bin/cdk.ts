@@ -11,7 +11,6 @@ new Cerebro(app, "Cerebro-TEST", {
     instanceSize: InstanceSize.SMALL,
     domainName: "cerebro.media.test.dev-gutools.co.uk",
     cerebroVersion: "v0.0.0",
-    esUrl: "http://localhost:9200",
 });
 
 new Cerebro(app, "Cerebro-PROD", { 
@@ -20,5 +19,4 @@ new Cerebro(app, "Cerebro-PROD", {
     instanceSize: InstanceSize.SMALL,
     domainName: "cerebro.media.gutools.co.uk",
     cerebroVersion: "v0.0.0",
-    esUrl: "http://localhost:9200",
 });
