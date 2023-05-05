@@ -104,6 +104,11 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
             "Value": "TEST",
           },
           {
+            "Key": "gu:repo",
+            "PropagateAtLaunch": true,
+            "Value": "guardian/grid-cerebro",
+          },
+          {
             "Key": "LogKinesisStreamName",
             "PropagateAtLaunch": true,
             "Value": {
@@ -161,6 +166,10 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
           {
             "Key": "gu:cdk:version",
             "Value": "TEST",
+          },
+          {
+            "Key": "gu:repo",
+            "Value": "guardian/grid-cerebro",
           },
           {
             "Key": "Name",
@@ -258,6 +267,10 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
           {
             "Key": "gu:cdk:version",
             "Value": "TEST",
+          },
+          {
+            "Key": "gu:repo",
+            "Value": "guardian/grid-cerebro",
           },
           {
             "Key": "Stack",
@@ -376,6 +389,10 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
             "Value": "TEST",
           },
           {
+            "Key": "gu:repo",
+            "Value": "guardian/grid-cerebro",
+          },
+          {
             "Key": "Stack",
             "Value": "media-service",
           },
@@ -442,6 +459,10 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
             "Value": "TEST",
           },
           {
+            "Key": "gu:repo",
+            "Value": "guardian/grid-cerebro",
+          },
+          {
             "Key": "Stack",
             "Value": "media-service",
           },
@@ -474,6 +495,10 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
           {
             "Key": "gu:cdk:version",
             "Value": "TEST",
+          },
+          {
+            "Key": "gu:repo",
+            "Value": "guardian/grid-cerebro",
           },
           {
             "Key": "Stack",
@@ -610,6 +635,10 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
             "Value": "TEST",
           },
           {
+            "Key": "gu:repo",
+            "Value": "guardian/grid-cerebro",
+          },
+          {
             "Key": "Stack",
             "Value": "media-service",
           },
@@ -659,6 +688,10 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
           {
             "Key": "gu:cdk:version",
             "Value": "TEST",
+          },
+          {
+            "Key": "gu:repo",
+            "Value": "guardian/grid-cerebro",
           },
           {
             "Key": "Stack",
@@ -737,6 +770,10 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
                   "Value": "TEST",
                 },
                 {
+                  "Key": "gu:repo",
+                  "Value": "guardian/grid-cerebro",
+                },
+                {
                   "Key": "Name",
                   "Value": "Cerebro/media-service-TEST-cerebro",
                 },
@@ -756,6 +793,10 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
                 {
                   "Key": "gu:cdk:version",
                   "Value": "TEST",
+                },
+                {
+                  "Key": "gu:repo",
+                  "Value": "guardian/grid-cerebro",
                 },
                 {
                   "Key": "Name",
@@ -816,6 +857,10 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
               {
                 "Key": "gu:cdk:version",
                 "Value": "TEST",
+              },
+              {
+                "Key": "gu:repo",
+                "Value": "guardian/grid-cerebro",
               },
               {
                 "Key": "Name",
