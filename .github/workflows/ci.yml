@@ -59,7 +59,7 @@ jobs:
                 contentDirectory: cloudformation
                 parameters:
                   templateStagePaths:
-                    CODE: cerebro-CODE.template.json
+                    TEST: cerebro-TEST.template.json
                     PROD: cerebro-PROD.template.json
                   amiTags:
                     AmigoStage: PROD
@@ -69,4 +69,4 @@ jobs:
           contentDirectories: |
             cloudformation:
               - cdk/cdk.out/cerebro-TEST.template.json
-              - cdk/cdk.out/cerebro-CODE.template.json
+              - cdk/cdk.out/cerebro-PROD.template.json
