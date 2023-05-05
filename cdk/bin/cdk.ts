@@ -1,7 +1,7 @@
 import "source-map-support/register";
 import { App } from "aws-cdk-lib";
-import { Cerebro } from "../lib/cerebro";
 import { InstanceSize } from "aws-cdk-lib/aws-ec2";
+import { Cerebro } from "../lib/cerebro";
 
 const app = new App();
 

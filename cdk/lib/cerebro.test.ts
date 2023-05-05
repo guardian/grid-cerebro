@@ -1,7 +1,7 @@
 import { App } from "aws-cdk-lib";
 import { Template } from "aws-cdk-lib/assertions";
-import { Cerebro } from "./cerebro";
 import { InstanceSize } from "aws-cdk-lib/aws-ec2";
+import { Cerebro } from "./cerebro";
 
 describe("The Cerebro stack", () => {
   it("matches the snapshot", () => {
