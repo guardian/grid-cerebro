@@ -44,27 +44,27 @@ export class Cerebro extends GuStack {
         noMonitoring: true
       },
       userData: `#!/bin/bash -ev
-      adduser --disabled-password cerebro
-      export HOME=/home/cerebro
-      cd $HOME
-      wget https://github.com/lmenezes/cerebro/releases/download/v${props.cerebroVersion}/cerebro_${props.cerebroVersion}_all.deb
-      echo 'JAVA_OPTS="-Dconfig.file=/etc/cerebro/custom.conf -Dpidfile.path=/dev/null"' > /etc/default/cerebro
-      mkdir /etc/cerebro
-      cat <<EOF > /etc/cerebro/custom.conf
-      echo '# Include these as defaults
-      include "/etc/cerebro/application.conf"
+adduser --disabled-password cerebro
+export HOME=/home/cerebro
+cd $HOME
+wget https://github.com/lmenezes/cerebro/releases/download/v${props.cerebroVersion}/cerebro_${props.cerebroVersion}_all.deb
+dpkg -i cerebro_${props.cerebroVersion}_all.deb
+echo 'JAVA_OPTS="-Dconfig.file=/etc/cerebro/custom.conf -Dpidfile.path=/dev/null"' > /etc/default/cerebro
+cat <<'EOF' > /etc/cerebro/custom.conf
+# Include these as defaults
+include "/etc/cerebro/application.conf"
       
-      # Overrides
-      data.path: "/var/lib/cerebro/cerebro.db"
+# Overrides
+data.path: "/var/lib/cerebro/cerebro.db"
       
-      hosts = [
-        {
-          host = "${esUrl.valueAsString}"
-          name = "${props.stack} (${props.stage})"
-        }
-      ]
-      EOF
-      dpkg -i cerebro_${props.cerebroVersion}_all.deb
+hosts = [
+  {
+    host = "${esUrl.valueAsString}"
+    name = "${props.stack} (${props.stage})"
+  }
+]
+EOF
+systemctl restart cerebro
 `,
       roleConfiguration: {
         additionalPolicies: [
