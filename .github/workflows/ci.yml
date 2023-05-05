@@ -60,10 +60,11 @@ jobs:
                   templateStagePaths:
                     TEST: cerebro-TEST.template.json
                     PROD: cerebro-PROD.template.json
-                  amiParametersToTags:
-                    AMICerebro:
-                      AmigoStage: PROD
-                      Recipe: editorial-tools-focal-java11-ARM-WITH-cdk-base
+                  amiTags:
+                    AmigoStage: PROD
+                    BuiltBy: amigo
+                    Recipe: editorial-tools-focal-java11-ARM-WITH-cdk-base
+                  amiParameter: AMICerebro
                   amiEncrypted: true
           contentDirectories: |
             cloudformation:
