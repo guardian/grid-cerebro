@@ -23,7 +23,7 @@ export class Cerebro extends GuStack {
 
     const esUrl = new GuStringParameter(this, 'elasticsearchUrl', {
       fromSSM: true,
-      default: `/${props.stage}/${props.stack}/elasticsearch/url`,
+      default: `/${props.stage}/grid-elasticsearch/elasticsearch/url`,
     });
 
     const cerebroApp = new GuEc2App(this, {
