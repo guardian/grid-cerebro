@@ -10,7 +10,7 @@ new Cerebro(app, {
     stage: "TEST", 
     instanceSize: InstanceSize.SMALL,
     domainName: "cerebro.media.test.dev-gutools.co.uk",
-    cerebroVersion: "v0.0.0",
+    cerebroVersion: "0.9.4",
 });
 
 new Cerebro(app, { 
@@ -18,5 +18,5 @@ new Cerebro(app, {
     stage: "PROD", 
     instanceSize: InstanceSize.SMALL,
     domainName: "cerebro.media.gutools.co.uk",
-    cerebroVersion: "v0.0.0",
+    cerebroVersion: "0.9.4",
 });
