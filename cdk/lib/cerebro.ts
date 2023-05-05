@@ -6,7 +6,8 @@ import {GuStringParameter} from '@guardian/cdk/lib/constructs/core/parameters';
 import {GuCname} from "@guardian/cdk/lib/constructs/dns";
 import type {App} from "aws-cdk-lib";
 import {Duration} from 'aws-cdk-lib';
-import type { InstanceSize} from "aws-cdk-lib/aws-ec2";
+import type { InstanceSize } from "aws-cdk-lib/aws-ec2";
+import { Peer } from "aws-cdk-lib/aws-ec2";
 import {InstanceClass, InstanceType} from "aws-cdk-lib/aws-ec2";
 
 const app = 'cerebro';
@@ -32,8 +33,9 @@ export class Cerebro extends GuStack {
       applicationPort: 9000,
       app,
       access: {
-        scope: AccessScope.PUBLIC,
-      },
+        scope: AccessScope.RESTRICTED,
+        cidrRanges: [Peer.ipv4("172.16.0.0/12")]
+      },  
       instanceType: InstanceType.of(InstanceClass.T4G, props.instanceSize),
       certificateProps:{
         domainName: props.domainName
