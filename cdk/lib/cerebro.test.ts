@@ -7,7 +7,7 @@ describe("The Cerebro stack", () => {
   it("matches the snapshot", () => {
     const app = new App();
     const stack = new Cerebro(app, { 
-      stack: "grid-elasticsearch", 
+      stack: "media-service", 
       stage: "TEST", 
       instanceSize: InstanceSize.SMALL,
       domainName: "grid-cerebro-test.test.dev-gutools.co.uk",
