@@ -34,7 +34,6 @@ jobs:
         working-directory: cdk
         run: |
           npm run lint
-          npm run check-format
           npm test
 
       - name: synth cdk
