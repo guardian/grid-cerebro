@@ -2,14 +2,13 @@ import {GuEc2App} from "@guardian/cdk";
 import {AccessScope} from "@guardian/cdk/lib/constants";
 import type {GuStackProps} from "@guardian/cdk/lib/constructs/core";
 import {GuStack} from "@guardian/cdk/lib/constructs/core";
-import {GuSecurityGroup, GuVpc} from '@guardian/cdk/lib/constructs/ec2';
 import {GuStringParameter} from '@guardian/cdk/lib/constructs/core/parameters';
 import {GuCname} from "@guardian/cdk/lib/constructs/dns";
+import {GuSecurityGroup, GuVpc} from '@guardian/cdk/lib/constructs/ec2';
 import type {App} from "aws-cdk-lib";
 import {Duration} from 'aws-cdk-lib';
-import type { InstanceSize } from "aws-cdk-lib/aws-ec2";
-import { Peer, Port } from "aws-cdk-lib/aws-ec2";
-import {InstanceClass, InstanceType} from "aws-cdk-lib/aws-ec2";
+import type {InstanceSize} from "aws-cdk-lib/aws-ec2";
+import {InstanceClass, InstanceType, Peer} from "aws-cdk-lib/aws-ec2";
 
 const app = 'cerebro';
 
