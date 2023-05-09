@@ -72,6 +72,11 @@ systemctl restart cerebro
       },
     });
 
+		cerebroApp.targetGroup.configureHealthCheck({
+			...cerebroApp.targetGroup.healthCheck,
+			path: '/',
+		});
+
     const { domainName } = props;
 
     new GuCname(this, "CerebroCname", {
