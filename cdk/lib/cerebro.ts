@@ -35,8 +35,7 @@ export class Cerebro extends GuStack {
       applicationPort: 9000,
       app,
       access: {
-        scope: AccessScope.RESTRICTED,
-        cidrRanges: [Peer.ipv4("172.16.0.0/12")]
+        scope: AccessScope.PUBLIC
       },  
       instanceType: InstanceType.of(InstanceClass.T4G, props.instanceSize),
       certificateProps:{

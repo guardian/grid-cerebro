@@ -24,7 +24,6 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
       "GuApplicationLoadBalancer",
       "GuApplicationTargetGroup",
       "GuHttpsApplicationListener",
-      "GuSecurityGroup",
       "GuLambdaFunction",
       "GuHttpsEgressSecurityGroup",
       "GuSecurityGroup",
@@ -288,27 +287,6 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
       },
       "Type": "AWS::EC2::SecurityGroupIngress",
     },
-    "ElasticSearchAccessCerebrofromcerebroTESTRestrictedIngressSecurityGroupCerebro2EDA7DDB9000F594C6FE": {
-      "Properties": {
-        "Description": "Load balancer to target",
-        "FromPort": 9000,
-        "GroupId": {
-          "Fn::GetAtt": [
-            "ElasticSearchAccessCerebro8976FF11",
-            "GroupId",
-          ],
-        },
-        "IpProtocol": "tcp",
-        "SourceSecurityGroupId": {
-          "Fn::GetAtt": [
-            "RestrictedIngressSecurityGroupCerebro2AF3842F",
-            "GroupId",
-          ],
-        },
-        "ToPort": 9000,
-      },
-      "Type": "AWS::EC2::SecurityGroupIngress",
-    },
     "ElasticSearchAccessCerebrofromcerebroTESTldpaccessCerebro0C8021BB90005074578A": {
       "Properties": {
         "Description": "Load balancer to target",
@@ -416,27 +394,6 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
         "SourceSecurityGroupId": {
           "Fn::GetAtt": [
             "LoadBalancerCerebroSecurityGroupB74E04CC",
-            "GroupId",
-          ],
-        },
-        "ToPort": 9000,
-      },
-      "Type": "AWS::EC2::SecurityGroupIngress",
-    },
-    "GuHttpsEgressSecurityGroupCerebrofromcerebroTESTRestrictedIngressSecurityGroupCerebro2EDA7DDB900080CF337B": {
-      "Properties": {
-        "Description": "Load balancer to target",
-        "FromPort": 9000,
-        "GroupId": {
-          "Fn::GetAtt": [
-            "GuHttpsEgressSecurityGroupCerebro4DCECD72",
-            "GroupId",
-          ],
-        },
-        "IpProtocol": "tcp",
-        "SourceSecurityGroupId": {
-          "Fn::GetAtt": [
-            "RestrictedIngressSecurityGroupCerebro2AF3842F",
             "GroupId",
           ],
         },
@@ -624,12 +581,6 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
           },
           {
             "Fn::GetAtt": [
-              "RestrictedIngressSecurityGroupCerebro2AF3842F",
-              "GroupId",
-            ],
-          },
-          {
-            "Fn::GetAtt": [
               "ldpaccessCerebro20E55119",
               "GroupId",
             ],
@@ -667,6 +618,15 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
     "LoadBalancerCerebroSecurityGroupB74E04CC": {
       "Properties": {
         "GroupDescription": "Automatically created Security Group for ELB cerebroTESTLoadBalancerCerebro9233C8B5",
+        "SecurityGroupIngress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow from anyone on port 443",
+            "FromPort": 443,
+            "IpProtocol": "tcp",
+            "ToPort": 443,
+          },
+        ],
         "Tags": [
           {
             "Key": "App",
@@ -817,109 +777,6 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
       },
       "Type": "AWS::IAM::Policy",
     },
-    "RestrictedIngressSecurityGroupCerebro2AF3842F": {
-      "Properties": {
-        "GroupDescription": "Allow restricted ingress from CIDR ranges",
-        "SecurityGroupIngress": [
-          {
-            "CidrIp": "172.16.0.0/12",
-            "Description": "Allow access on port 443 from 172.16.0.0/12",
-            "FromPort": 443,
-            "IpProtocol": "tcp",
-            "ToPort": 443,
-          },
-        ],
-        "Tags": [
-          {
-            "Key": "App",
-            "Value": "cerebro",
-          },
-          {
-            "Key": "gu:cdk:version",
-            "Value": "TEST",
-          },
-          {
-            "Key": "gu:repo",
-            "Value": "guardian/grid-cerebro",
-          },
-          {
-            "Key": "Stack",
-            "Value": "media-service",
-          },
-          {
-            "Key": "Stage",
-            "Value": "TEST",
-          },
-        ],
-        "VpcId": {
-          "Ref": "VpcId",
-        },
-      },
-      "Type": "AWS::EC2::SecurityGroup",
-    },
-    "RestrictedIngressSecurityGroupCerebrotocerebroTESTElasticSearchAccessCerebro68F4EBE39000B2501331": {
-      "Properties": {
-        "Description": "Load balancer to target",
-        "DestinationSecurityGroupId": {
-          "Fn::GetAtt": [
-            "ElasticSearchAccessCerebro8976FF11",
-            "GroupId",
-          ],
-        },
-        "FromPort": 9000,
-        "GroupId": {
-          "Fn::GetAtt": [
-            "RestrictedIngressSecurityGroupCerebro2AF3842F",
-            "GroupId",
-          ],
-        },
-        "IpProtocol": "tcp",
-        "ToPort": 9000,
-      },
-      "Type": "AWS::EC2::SecurityGroupEgress",
-    },
-    "RestrictedIngressSecurityGroupCerebrotocerebroTESTGuHttpsEgressSecurityGroupCerebroF93BDB94900001845048": {
-      "Properties": {
-        "Description": "Load balancer to target",
-        "DestinationSecurityGroupId": {
-          "Fn::GetAtt": [
-            "GuHttpsEgressSecurityGroupCerebro4DCECD72",
-            "GroupId",
-          ],
-        },
-        "FromPort": 9000,
-        "GroupId": {
-          "Fn::GetAtt": [
-            "RestrictedIngressSecurityGroupCerebro2AF3842F",
-            "GroupId",
-          ],
-        },
-        "IpProtocol": "tcp",
-        "ToPort": 9000,
-      },
-      "Type": "AWS::EC2::SecurityGroupEgress",
-    },
-    "RestrictedIngressSecurityGroupCerebrotocerebroTESTWazuhSecurityGroup20EA810B900053ACD2B4": {
-      "Properties": {
-        "Description": "Load balancer to target",
-        "DestinationSecurityGroupId": {
-          "Fn::GetAtt": [
-            "WazuhSecurityGroup",
-            "GroupId",
-          ],
-        },
-        "FromPort": 9000,
-        "GroupId": {
-          "Fn::GetAtt": [
-            "RestrictedIngressSecurityGroupCerebro2AF3842F",
-            "GroupId",
-          ],
-        },
-        "IpProtocol": "tcp",
-        "ToPort": 9000,
-      },
-      "Type": "AWS::EC2::SecurityGroupEgress",
-    },
     "TargetGroupCerebro8F48E4B4": {
       "Properties": {
         "HealthCheckIntervalSeconds": 10,
@@ -1026,27 +883,6 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
         "SourceSecurityGroupId": {
           "Fn::GetAtt": [
             "LoadBalancerCerebroSecurityGroupB74E04CC",
-            "GroupId",
-          ],
-        },
-        "ToPort": 9000,
-      },
-      "Type": "AWS::EC2::SecurityGroupIngress",
-    },
-    "WazuhSecurityGroupfromcerebroTESTRestrictedIngressSecurityGroupCerebro2EDA7DDB9000176E2DD2": {
-      "Properties": {
-        "Description": "Load balancer to target",
-        "FromPort": 9000,
-        "GroupId": {
-          "Fn::GetAtt": [
-            "WazuhSecurityGroup",
-            "GroupId",
-          ],
-        },
-        "IpProtocol": "tcp",
-        "SourceSecurityGroupId": {
-          "Fn::GetAtt": [
-            "RestrictedIngressSecurityGroupCerebro2AF3842F",
             "GroupId",
           ],
         },
