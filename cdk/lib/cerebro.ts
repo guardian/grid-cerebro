@@ -72,6 +72,10 @@ systemctl restart cerebro
         additionalPolicies: [
         ],
       },
+      googleAuth: {
+        enabled: true,
+        domain: props.domainName,
+      }
     });
 
 		cerebroApp.targetGroup.configureHealthCheck({
