@@ -720,7 +720,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
     "TargetGroupCerebro8F48E4B4": {
       "Properties": {
         "HealthCheckIntervalSeconds": 10,
-        "HealthCheckPath": "/healthcheck",
+        "HealthCheckPath": "/",
         "HealthCheckProtocol": "HTTP",
         "HealthCheckTimeoutSeconds": 5,
         "HealthyThresholdCount": 5,
