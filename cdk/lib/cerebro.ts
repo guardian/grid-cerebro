@@ -2,12 +2,13 @@ import {GuEc2App} from "@guardian/cdk";
 import {AccessScope} from "@guardian/cdk/lib/constants";
 import type {GuStackProps} from "@guardian/cdk/lib/constructs/core";
 import {GuStack} from "@guardian/cdk/lib/constructs/core";
+import {GuSecurityGroup, GuVpc} from '@guardian/cdk/lib/constructs/ec2';
 import {GuStringParameter} from '@guardian/cdk/lib/constructs/core/parameters';
 import {GuCname} from "@guardian/cdk/lib/constructs/dns";
 import type {App} from "aws-cdk-lib";
 import {Duration} from 'aws-cdk-lib';
 import type { InstanceSize } from "aws-cdk-lib/aws-ec2";
-import { Peer } from "aws-cdk-lib/aws-ec2";
+import { Peer, Port } from "aws-cdk-lib/aws-ec2";
 import {InstanceClass, InstanceType} from "aws-cdk-lib/aws-ec2";
 
 const app = 'cerebro';
@@ -20,6 +21,8 @@ interface CerebroStackProps extends GuStackProps {
 export class Cerebro extends GuStack {
   constructor(scope: App, props: CerebroStackProps) {
     super(scope, `${app}-${props.stage}`, props);
+
+    const vpc = GuVpc.fromIdParameter(this, 'vpc');
 
     const esUrl = new GuStringParameter(this, 'elasticsearchUrl', {
       fromSSM: true,
@@ -76,6 +79,21 @@ systemctl restart cerebro
 			...cerebroApp.targetGroup.healthCheck,
 			path: '/',
 		});
+
+    const elasticsearchSecurityGroup = new GuSecurityGroup(this, "ElasticSearchAccess", {
+      egresses: [
+        {
+          range: Peer.ipv4("172.16.0.0/12"),
+          port: 9200,
+          description: "Allow outgoing Elasticsearch connections"
+        }
+      ],
+      allowAllOutbound: false,
+      vpc,
+      app,
+    });
+      
+    cerebroApp.autoScalingGroup.connections.addSecurityGroup(elasticsearchSecurityGroup);
 
     const { domainName } = props;
 

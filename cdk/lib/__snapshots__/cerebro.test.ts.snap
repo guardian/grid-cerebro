@@ -4,8 +4,8 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
 {
   "Metadata": {
     "gu:cdk:constructs": [
-      "GuStringParameter",
       "GuVpcParameter",
+      "GuStringParameter",
       "GuSubnetListParameter",
       "GuSubnetListParameter",
       "GuEc2App",
@@ -24,6 +24,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
       "GuApplicationLoadBalancer",
       "GuApplicationTargetGroup",
       "GuHttpsApplicationListener",
+      "GuSecurityGroup",
       "GuSecurityGroup",
       "GuCname",
     ],
@@ -215,6 +216,88 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
         ],
       },
       "Type": "AWS::IAM::Policy",
+    },
+    "ElasticSearchAccessCerebro8976FF11": {
+      "Properties": {
+        "GroupDescription": "cerebro-TEST/ElasticSearchAccessCerebro",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "172.16.0.0/12",
+            "Description": "Allow outgoing Elasticsearch connections",
+            "FromPort": 9200,
+            "IpProtocol": "tcp",
+            "ToPort": 9200,
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "App",
+            "Value": "cerebro",
+          },
+          {
+            "Key": "gu:cdk:version",
+            "Value": "TEST",
+          },
+          {
+            "Key": "gu:repo",
+            "Value": "guardian/grid-cerebro",
+          },
+          {
+            "Key": "Stack",
+            "Value": "media-service",
+          },
+          {
+            "Key": "Stage",
+            "Value": "TEST",
+          },
+        ],
+        "VpcId": {
+          "Ref": "VpcId",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "ElasticSearchAccessCerebrofromcerebroTESTLoadBalancerCerebroSecurityGroup52BDFD869000C4A5FB20": {
+      "Properties": {
+        "Description": "Load balancer to target",
+        "FromPort": 9000,
+        "GroupId": {
+          "Fn::GetAtt": [
+            "ElasticSearchAccessCerebro8976FF11",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "SourceSecurityGroupId": {
+          "Fn::GetAtt": [
+            "LoadBalancerCerebroSecurityGroupB74E04CC",
+            "GroupId",
+          ],
+        },
+        "ToPort": 9000,
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "ElasticSearchAccessCerebrofromcerebroTESTRestrictedIngressSecurityGroupCerebro2EDA7DDB9000F594C6FE": {
+      "Properties": {
+        "Description": "Load balancer to target",
+        "FromPort": 9000,
+        "GroupId": {
+          "Fn::GetAtt": [
+            "ElasticSearchAccessCerebro8976FF11",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "SourceSecurityGroupId": {
+          "Fn::GetAtt": [
+            "RestrictedIngressSecurityGroupCerebro2AF3842F",
+            "GroupId",
+          ],
+        },
+        "ToPort": 9000,
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
     },
     "GetDistributablePolicyCerebroDC456496": {
       "Properties": {
@@ -534,6 +617,27 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
       },
       "Type": "AWS::EC2::SecurityGroup",
     },
+    "LoadBalancerCerebroSecurityGrouptocerebroTESTElasticSearchAccessCerebro68F4EBE39000A9D7B711": {
+      "Properties": {
+        "Description": "Load balancer to target",
+        "DestinationSecurityGroupId": {
+          "Fn::GetAtt": [
+            "ElasticSearchAccessCerebro8976FF11",
+            "GroupId",
+          ],
+        },
+        "FromPort": 9000,
+        "GroupId": {
+          "Fn::GetAtt": [
+            "LoadBalancerCerebroSecurityGroupB74E04CC",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "ToPort": 9000,
+      },
+      "Type": "AWS::EC2::SecurityGroupEgress",
+    },
     "LoadBalancerCerebroSecurityGrouptocerebroTESTGuHttpsEgressSecurityGroupCerebroF93BDB94900077011768": {
       "Properties": {
         "Description": "Load balancer to target",
@@ -674,6 +778,27 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
         },
       },
       "Type": "AWS::EC2::SecurityGroup",
+    },
+    "RestrictedIngressSecurityGroupCerebrotocerebroTESTElasticSearchAccessCerebro68F4EBE39000B2501331": {
+      "Properties": {
+        "Description": "Load balancer to target",
+        "DestinationSecurityGroupId": {
+          "Fn::GetAtt": [
+            "ElasticSearchAccessCerebro8976FF11",
+            "GroupId",
+          ],
+        },
+        "FromPort": 9000,
+        "GroupId": {
+          "Fn::GetAtt": [
+            "RestrictedIngressSecurityGroupCerebro2AF3842F",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "ToPort": 9000,
+      },
+      "Type": "AWS::EC2::SecurityGroupEgress",
     },
     "RestrictedIngressSecurityGroupCerebrotocerebroTESTGuHttpsEgressSecurityGroupCerebroF93BDB94900001845048": {
       "Properties": {
@@ -879,6 +1004,12 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
             {
               "Fn::GetAtt": [
                 "WazuhSecurityGroup",
+                "GroupId",
+              ],
+            },
+            {
+              "Fn::GetAtt": [
+                "ElasticSearchAccessCerebro8976FF11",
                 "GroupId",
               ],
             },
