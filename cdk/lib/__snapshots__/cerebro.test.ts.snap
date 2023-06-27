@@ -618,6 +618,15 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
     "LoadBalancerCerebroSecurityGroupB74E04CC": {
       "Properties": {
         "GroupDescription": "Automatically created Security Group for ELB cerebroTESTLoadBalancerCerebro9233C8B5",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow to IdP endpoint",
+            "FromPort": 443,
+            "IpProtocol": "tcp",
+            "ToPort": 443,
+          },
+        ],
         "SecurityGroupIngress": [
           {
             "CidrIp": "0.0.0.0/0",
