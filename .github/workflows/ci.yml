@@ -42,8 +42,7 @@ jobs:
 
       - name: write the current GIT hash to GIT_COMMIT_HASH.txt (to use as an artifact, since cerebro binaries downloaded at boot time)
         run: |
-          GIT_COMMIT_HASH=$(git rev-parse HEAD)
-          echo '$GIT_COMMIT_HASH' > GIT_COMMIT_HASH.txt
+          git rev-parse HEAD > GIT_COMMIT_HASH.txt
 
       - uses: guardian/actions-riff-raff@v2
         with:
