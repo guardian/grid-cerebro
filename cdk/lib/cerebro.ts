@@ -36,7 +36,7 @@ export class Cerebro extends GuStack {
       app,
       access: {
         scope: AccessScope.PUBLIC
-      },  
+      },
       instanceType: InstanceType.of(InstanceClass.T4G, props.instanceSize),
       certificateProps:{
         domainName: props.domainName
@@ -74,6 +74,10 @@ systemctl restart cerebro
       googleAuth: {
         enabled: true,
         domain: props.domainName,
+      },
+      imageRecipe: {
+        Recipe: 'editorial-tools-focal-java11-ARM-WITH-cdk-base',
+        Encrypted: true,
       }
     });
 
@@ -94,7 +98,7 @@ systemctl restart cerebro
       vpc,
       app,
     });
-      
+
     cerebroApp.autoScalingGroup.connections.addSecurityGroup(elasticsearchSecurityGroup);
 
     const { domainName } = props;

@@ -1,21 +1,28 @@
 import "source-map-support/register";
-import { App } from "aws-cdk-lib";
+import {GuRootExperimental} from "@guardian/cdk/lib/experimental/constructs";
 import { InstanceSize } from "aws-cdk-lib/aws-ec2";
 import { Cerebro } from "../lib/cerebro";
 
-const app = new App();
+const app = new GuRootExperimental();
 
-new Cerebro(app, { 
-    stack: "media-service", 
-    stage: "TEST", 
+const stack = "media-service";
+
+const env = {
+    region: "eu-west-1"
+};
+new Cerebro(app, {
+    env,
+    stack,
+    stage: "TEST",
     instanceSize: InstanceSize.SMALL,
     domainName: "cerebro.media.test.dev-gutools.co.uk",
     cerebroVersion: "0.9.4",
 });
 
-new Cerebro(app, { 
-    stack: "media-service", 
-    stage: "PROD", 
+new Cerebro(app, {
+    env,
+    stack,
+    stage: "PROD",
     instanceSize: InstanceSize.SMALL,
     domainName: "cerebro.media.gutools.co.uk",
     cerebroVersion: "0.9.4",

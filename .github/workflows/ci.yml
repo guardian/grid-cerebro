@@ -40,33 +40,16 @@ jobs:
         working-directory: cdk
         run: npm run synth
 
+      - name: write the current GIT hash to GIT_COMMIT_HASH.txt (to use as an artifact, since cerebro binaries downloaded at boot time)
+        run: |
+          git rev-parse HEAD > GIT_COMMIT_HASH.txt
+
       - uses: guardian/actions-riff-raff@v2
         with:
           projectName: media-service::cerebro
-          config: |
-            stacks:
-              - media-service
-            allowedStages:
-              - TEST
-              - PROD
-            regions:
-              - eu-west-1
-            deployments:
-              cloudformation:
-                type: cloud-formation
-                app: cerebro
-                contentDirectory: cloudformation
-                parameters:
-                  templateStagePaths:
-                    TEST: cerebro-TEST.template.json
-                    PROD: cerebro-PROD.template.json
-                  amiTags:
-                    AmigoStage: PROD
-                    BuiltBy: amigo
-                    Recipe: editorial-tools-focal-java11-ARM-WITH-cdk-base
-                  amiParameter: AMICerebro
-                  amiEncrypted: false
+          configPath: cdk/cdk.out/riff-raff.yaml
           contentDirectories: |
-            cloudformation:
-              - cdk/cdk.out/cerebro-TEST.template.json
-              - cdk/cdk.out/cerebro-PROD.template.json
+            cdk.out:
+              - cdk/cdk.out
+            cerebro:
+              - GIT_COMMIT_HASH.txt
