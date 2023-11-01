@@ -81,7 +81,7 @@ exports[`The Cerebro stack matches the snapshot 1`] = `
       "Type": "AWS::SSM::Parameter::Value<String>",
     },
     "elasticsearchUrl": {
-      "Default": "/TEST/grid-elasticsearch/elasticsearch/url",
+      "Default": "/TEST/media-service/elasticsearch/url",
       "Type": "AWS::SSM::Parameter::Value<String>",
     },
   },
